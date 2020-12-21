@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/tabsFragment">
+
+
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="ru.kazantsev.eventsandposters.ui.fragment.TabsFragment"
+        android:label="TabsFragment"
+        tools:layout="@layout/tabs_fragment">
+        <argument
+            android:name="page"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="ru.kazantsev.eventsandposters.ui.fragment.EventDetailsFragment"
+        android:label="EventDetailsFragment"
+        tools:layout="@layout/evemt_details">
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
+
+    <action
+        android:id="@+id/nav_action_event_detail"
+        app:destination="@id/eventDetailsFragment"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/fade_out" />
+    <action
+        android:id="@+id/nav_action_tabs_fragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_graph"
+        app:popUpToInclusive="true"
+        app:destination="@id/tabsFragment"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/fade_out" />
+</navigation>

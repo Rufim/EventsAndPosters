@@ -1,0 +1,102 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'org.jetbrains.kotlin.plugin.parcelize'
+}
+
+ext {
+    dagger_version = '2.30.1'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "ru.kazantsev.eventsandposters"
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    def dagger_version = '2.30.1'
+    def room_version = '2.2.6'
+    def lifecycle_version = "2.2.0"
+    def moshi_version = "1.9.2"
+    def paging_version = "2.1.2"
+
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'ru.ar2code.mutableliveevent:MutableLiveEvent:1.0.1'
+    implementation "androidx.paging:paging-common-ktx:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0-rc01"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha04"
+
+    implementation "com.squareup.retrofit2:retrofit:2.8.1"
+    implementation "com.squareup.retrofit2:converter-moshi:2.7.2"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
